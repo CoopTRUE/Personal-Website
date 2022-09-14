@@ -32,41 +32,48 @@
     }
     currentTextIndex++
   }
-  let currentTextIndex = 0
-  $: typingAnimation(text[currentTextIndex % text.length])
+  let currentTextIndex: number
+  $: if (loaded) typingAnimation(text[currentTextIndex % text.length])
 
+  let loaded = false
   onMount(() => {
     // @ts-ignore
     gradient.initGradient('#gradient-canvas')
+    loaded = true
+    currentTextIndex = 0
   })
-  // onDestroy(() => window.clearInterval(intervalId))
+  $: y = 0
+  $: innerY = 100
+  $: currentPage = Math.floor((y + innerY / 1.8) / innerY)
+  $: hueRotate = currentPage * 70
+  $: console.log(hueRotate)
 </script>
 
-<canvas id="gradient-canvas" data-js-darken-top data-transition-in />
-<div class="main center">
-  <h1 class="center-col moving-text-container">
-    <span class="center">Hi,</span>
-    <span class="center">I'm Cooper,</span>
-    <span class="rot-text center" class:typing>{currentText}</span>
-  </h1>
-  <div class="profession-image">hi</div>
+<svelte:window bind:scrollY={y} bind:innerHeight={innerY} />
+<canvas
+  id="gradient-canvas"
+  style="filter: hue-rotate({hueRotate}deg)"
+  data-js-darken-top
+  data-transition-in
+/>
+<div class="main center-col">
+  <div class="page1 center">
+    <h1 class="center-col moving-text-container">
+      <span class="center">Hi,</span>
+      <span class="center">I'm Cooper,</span>
+      <span class="rot-text center" class:typing>{currentText}</span>
+    </h1>
+  </div>
+  <div class="page2 center"><h1>test</h1></div>
+  <div class="page3 center"><h1>test</h1></div>
 </div>
 
 <style lang="scss">
-  @media (max-width: 550px) {
-    .main {
-      flex-direction: column;
-      > * {
-        width: 100% !important;
-        padding: 0 0.1vw !important;
-      }
-    }
-  }
   .main {
     padding: 0 50px;
-    height: 100vh;
     > * {
-      width: 50%;
+      width: 100vw;
+      height: 100vh;
     }
   }
   .moving-text-container {
@@ -95,17 +102,17 @@
     }
   }
   #gradient-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: fixed;
     opacity: 70%;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     // filter: blur();
     --gradient-color-1: #c3e4ff;
     --gradient-color-2: #6ec3f4;
     --gradient-color-3: #eae2ff;
     --gradient-color-4: #b9beff;
     z-index: -10;
+    transition: 1s filter linear;
+    // filter: hue-rotate(0deg);
   }
 </style>
