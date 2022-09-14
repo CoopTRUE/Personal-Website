@@ -14,6 +14,7 @@ specifiers:
   prettier-plugin-svelte: ^2.7.0
   sanitize.css: ^13.0.0
   sass: ^1.54.9
+  sharp: ^0.31.0
   svelte: ^3.44.0
   svelte-check: ^2.7.1
   svelte-image: ^0.2.9
@@ -37,6 +38,7 @@ devDependencies:
   prettier-plugin-svelte: 2.7.0_nk6d2fkgcllkkdynqbuearcure
   sanitize.css: 13.0.0
   sass: 1.54.9
+  sharp: 0.31.0
   svelte: 3.50.1
   svelte-check: 2.9.0_shdnsuo55vjluqozcjtxyryg5e
   svelte-image: 0.2.9
