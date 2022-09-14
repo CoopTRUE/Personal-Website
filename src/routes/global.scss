@@ -1,0 +1,17 @@
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.center-col {
+  @extend .center;
+  flex-direction: column;
+}
+body {
+  overflow-x: hidden;
+  color-scheme: dark;
+  background: black;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
