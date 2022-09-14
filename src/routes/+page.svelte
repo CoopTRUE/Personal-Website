@@ -6,10 +6,10 @@
   const gradient = new Gradient()
 
   const keypressTime = 90
-  const waitTime = 4000
+  const waitTime = 3000
   const text = [
-    'web designer',
-    'backend designer',
+    'web developer',
+    'backend developer',
     'gamer',
     'trader',
     'defi user'
@@ -53,7 +53,6 @@
 <canvas
   id="gradient-canvas"
   style="filter: hue-rotate({hueRotate}deg)"
-  data-js-darken-top
   data-transition-in
 />
 <div class="main center-col">
@@ -61,11 +60,20 @@
     <h1 class="center-col moving-text-container">
       <span class="center">Hi,</span>
       <span class="center">I'm Cooper,</span>
-      <span class="rot-text center" class:typing>{currentText}</span>
+      <a
+        class="rot-text center"
+        class:typing
+        href="#page{(currentTextIndex % text.length) + 2}"
+      >
+        {currentText}
+      </a>
     </h1>
   </div>
-  <div class="page2 center"><h1>test</h1></div>
-  <div class="page3 center"><h1>test</h1></div>
+  <div class="page2 center" id="page2"><h1>web developer</h1></div>
+  <div class="page3 center" id="page3"><h1>backend developer</h1></div>
+  <div class="page4 center" id="page4"><h1>gamer</h1></div>
+  <div class="page5 center" id="page5"><h1>trader</h1></div>
+  <div class="page6 center" id="page6"><h1>defi user</h1></div>
 </div>
 
 <style lang="scss">
